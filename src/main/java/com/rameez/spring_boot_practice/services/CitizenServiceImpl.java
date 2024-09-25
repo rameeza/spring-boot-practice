@@ -41,6 +41,7 @@ public class CitizenServiceImpl implements CitizenService {
     public CitizenDto updateCitizen(@Valid CitizenDto citizenDtoParam) {
         Citizen savedCitizen = citizenRepo.getReferenceById(citizenDtoParam.getAadharNo());
         savedCitizen.setName(citizenDtoParam.getName());
+        savedCitizen.setPinCode(citizenDtoParam.getPinCode());
         Citizen updatedCitizen = citizenRepo.save(savedCitizen);
         return citizenMapper.fromCitizenEntityToDto(updatedCitizen);
     }

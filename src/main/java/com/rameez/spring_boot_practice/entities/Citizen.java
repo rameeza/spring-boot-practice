@@ -25,4 +25,8 @@ public class Citizen {
     @NotBlank
     private String name;
 
+    @NotNull
+    @NotBlank
+    private String pinCode;
+
 }

@@ -20,4 +20,8 @@ public class CitizenDto {
     @NotBlank
     private String name;
 
+    @NotNull
+    @NotBlank
+    private String pinCode;
+
 }

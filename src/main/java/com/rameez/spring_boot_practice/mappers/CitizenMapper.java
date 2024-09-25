@@ -10,6 +10,7 @@ public class CitizenMapper {
     public CitizenDto fromCitizenEntityToDto(Citizen savedCitizen) {
         CitizenDto citizenDto = new CitizenDto();
         citizenDto.setName(savedCitizen.getName());
+        citizenDto.setPinCode(savedCitizen.getPinCode());
         citizenDto.setAadharNo(savedCitizen.getAadharNo());
         return citizenDto;
     }
@@ -17,6 +18,7 @@ public class CitizenMapper {
     public Citizen fromCitizenDtoToEntity(@Valid CitizenDto citizenDto) {
         Citizen citizen = new Citizen();
         citizen.setName(citizenDto.getName());
+        citizen.setPinCode(citizenDto.getPinCode());
         citizen.setAadharNo(citizenDto.getAadharNo());
         return citizen;
     }
