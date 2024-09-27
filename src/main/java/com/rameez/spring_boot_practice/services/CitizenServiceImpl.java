@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -38,11 +37,13 @@ public class CitizenServiceImpl implements CitizenService {
     }
 
     @Override
-    public CitizenDto updateCitizen(@Valid CitizenDto citizenDtoParam) {
-        Citizen savedCitizen = citizenRepo.getReferenceById(citizenDtoParam.getAadharNo());
+    public CitizenDto updateCitizen(String aadharNo, @Valid CitizenDto citizenDtoParam) {
+        Citizen savedCitizen = citizenRepo.getReferenceById(aadharNo);
+
         savedCitizen.setName(citizenDtoParam.getName());
         savedCitizen.setPinCode(citizenDtoParam.getPinCode());
         Citizen updatedCitizen = citizenRepo.save(savedCitizen);
+
         return citizenMapper.fromCitizenEntityToDto(updatedCitizen);
     }
 
