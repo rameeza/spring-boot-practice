@@ -13,7 +13,7 @@ public interface CitizenService {
 
     void deleteCitizenById(String aadharNo);
 
-    CitizenDto updateCitizen(@Valid CitizenDto citizen);
+    CitizenDto updateCitizen(String aadharNo, @Valid CitizenDto citizen);
 
     List<CitizenDto> getAllCitizens();
 }
