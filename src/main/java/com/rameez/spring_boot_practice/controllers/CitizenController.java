@@ -41,7 +41,7 @@ public class CitizenController {
      */
     @GetMapping(ControllerPath.GET)
     public List<CitizenDto> getAllCitizens() {
-        log.info("Inside Controller: getAllCitizens" );
+        log.info("Inside Controller: getAllCitizens");
         return citizenService.getAllCitizens();
     }
 
@@ -52,7 +52,7 @@ public class CitizenController {
      * @return A ResponseEntity containing the newly created citizen, along with a URI pointing to the new citizen
      */
     @PostMapping(ControllerPath.POST)
-    public ResponseEntity addCitizen(@RequestBody @Valid CitizenDto citizenDto) {
+    public ResponseEntity<Object> addCitizen(@RequestBody @Valid CitizenDto citizenDto) {
         Citizen savedCitizen = citizenService.addCitizen(citizenDto);
 //        return new ResponseEntity(HttpStatus.CREATED);
         URI uri = URI.create(ControllerPath.BASE_PATH_CITIZEN + ControllerPath.GET + "/" + savedCitizen.getAadharNo());
@@ -67,7 +67,7 @@ public class CitizenController {
      * @return A 204 No Content response if the citizen is deleted successfully
      */
     @DeleteMapping(ControllerPath.DELETE_BY_AADHAR_PATH)
-    public ResponseEntity deleteCitizenById(@PathVariable String aadharNo) {
+    public ResponseEntity<Object> deleteCitizenById(@PathVariable String aadharNo) {
         citizenService.deleteCitizenById(aadharNo);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
@@ -75,7 +75,7 @@ public class CitizenController {
     /**
      * Updates a citizen in the database
      *
-     * @param aadharNo the aadhar number of the citizen to update
+     * @param aadharNo   the aadhar number of the citizen to update
      * @param citizenDto the updated citizen data
      * @return The updated CitizenDto object, containing the aadhar number, name and pincode of the updated citizen
      */
@@ -83,6 +83,6 @@ public class CitizenController {
     public ResponseEntity<CitizenDto> updateCitizen(@PathVariable String aadharNo, @RequestBody @Valid CitizenDto citizenDto) {
         citizenService.updateCitizen(aadharNo, citizenDto);
 
-        return new ResponseEntity<>(citizenDto, HttpStatus.CREATED);
+        return new ResponseEntity<>(citizenDto, HttpStatus.OK);
     }
 }
